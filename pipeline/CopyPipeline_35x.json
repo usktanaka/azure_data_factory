@@ -503,14 +503,6 @@
 							},
 							{
 								"source": {
-									"name": "XHTML/HTMLファイル最終更新日"
-								},
-								"sink": {
-									"path": "$['html_last_modified']"
-								}
-							},
-							{
-								"source": {
 									"name": "XHTML/HTMLファイル符号化方式",
 									"type": "String"
 								},
