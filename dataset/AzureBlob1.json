@@ -1,0 +1,16 @@
+{
+	"name": "AzureBlob1",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureStorage1",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureBlob",
+		"typeProperties": {
+			"fileName": "list_person_all_extended_utf8.zip",
+			"folderPath": "aozora"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

@@ -1,0 +1,253 @@
+{
+	"name": "SourceDataset_diz",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureStorage1",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureBlob",
+		"structure": [
+			{
+				"name": "作品ID",
+				"type": "Int32"
+			},
+			{
+				"name": "作品名",
+				"type": "String"
+			},
+			{
+				"name": "作品名読み",
+				"type": "String"
+			},
+			{
+				"name": "ソート用読み",
+				"type": "String"
+			},
+			{
+				"name": "副題",
+				"type": "String"
+			},
+			{
+				"name": "副題読み",
+				"type": "String"
+			},
+			{
+				"name": "原題",
+				"type": "String"
+			},
+			{
+				"name": "初出",
+				"type": "String"
+			},
+			{
+				"name": "分類番号",
+				"type": "String"
+			},
+			{
+				"name": "文字遣い種別",
+				"type": "String"
+			},
+			{
+				"name": "作品著作権フラグ",
+				"type": "String"
+			},
+			{
+				"name": "公開日",
+				"type": "String"
+			},
+			{
+				"name": "最終更新日",
+				"type": "String"
+			},
+			{
+				"name": "図書カードURL",
+				"type": "String"
+			},
+			{
+				"name": "人物ID",
+				"type": "Int32"
+			},
+			{
+				"name": "姓",
+				"type": "String"
+			},
+			{
+				"name": "名",
+				"type": "String"
+			},
+			{
+				"name": "姓読み",
+				"type": "String"
+			},
+			{
+				"name": "名読み",
+				"type": "String"
+			},
+			{
+				"name": "姓読みソート用",
+				"type": "String"
+			},
+			{
+				"name": "名読みソート用",
+				"type": "String"
+			},
+			{
+				"name": "姓ローマ字",
+				"type": "String"
+			},
+			{
+				"name": "名ローマ字",
+				"type": "String"
+			},
+			{
+				"name": "役割フラグ",
+				"type": "String"
+			},
+			{
+				"name": "生年月日",
+				"type": "String"
+			},
+			{
+				"name": "没年月日",
+				"type": "String"
+			},
+			{
+				"name": "人物著作権フラグ",
+				"type": "String"
+			},
+			{
+				"name": "底本名1",
+				"type": "String"
+			},
+			{
+				"name": "底本出版社名1",
+				"type": "String"
+			},
+			{
+				"name": "底本初版発行年1",
+				"type": "String"
+			},
+			{
+				"name": "入力に使用した版1",
+				"type": "String"
+			},
+			{
+				"name": "校正に使用した版1",
+				"type": "String"
+			},
+			{
+				"name": "底本の親本名1",
+				"type": "String"
+			},
+			{
+				"name": "底本の親本出版社名1",
+				"type": "String"
+			},
+			{
+				"name": "底本の親本初版発行年1",
+				"type": "String"
+			},
+			{
+				"name": "底本名2",
+				"type": "String"
+			},
+			{
+				"name": "底本出版社名2",
+				"type": "String"
+			},
+			{
+				"name": "底本初版発行年2",
+				"type": "String"
+			},
+			{
+				"name": "入力に使用した版2",
+				"type": "String"
+			},
+			{
+				"name": "校正に使用した版2",
+				"type": "String"
+			},
+			{
+				"name": "底本の親本名2",
+				"type": "String"
+			},
+			{
+				"name": "底本の親本出版社名2",
+				"type": "String"
+			},
+			{
+				"name": "底本の親本初版発行年2",
+				"type": "String"
+			},
+			{
+				"name": "入力者",
+				"type": "String"
+			},
+			{
+				"name": "校正者",
+				"type": "String"
+			},
+			{
+				"name": "テキストファイルURL",
+				"type": "String"
+			},
+			{
+				"name": "テキストファイル最終更新日",
+				"type": "String"
+			},
+			{
+				"name": "テキストファイル符号化方式",
+				"type": "String"
+			},
+			{
+				"name": "テキストファイル文字集合",
+				"type": "String"
+			},
+			{
+				"name": "テキストファイル修正回数",
+				"type": "String"
+			},
+			{
+				"name": "XHTML/HTMLファイルURL",
+				"type": "String"
+			},
+			{
+				"name": "XHTML/HTMLファイル最終更新日",
+				"type": "String"
+			},
+			{
+				"name": "XHTML/HTMLファイル符号化方式",
+				"type": "String"
+			},
+			{
+				"name": "XHTML/HTMLファイル文字集合",
+				"type": "String"
+			},
+			{
+				"name": "XHTML/HTMLファイル修正回数",
+				"type": "String"
+			}
+		],
+		"typeProperties": {
+			"format": {
+				"type": "TextFormat",
+				"columnDelimiter": ",",
+				"rowDelimiter": "",
+				"quoteChar": "\"",
+				"nullValue": "\\N",
+				"encodingName": null,
+				"treatEmptyAsNull": true,
+				"skipLineCount": 0,
+				"firstRowAsHeader": true
+			},
+			"compression": {
+				"type": "ZipDeflate",
+				"level": "Fastest"
+			},
+			"fileName": "list_person_all_extended_utf8.zip",
+			"folderPath": "aozora"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}
