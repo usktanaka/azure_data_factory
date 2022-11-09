@@ -1,0 +1,1652 @@
+{
+	"$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"type": "string",
+			"metadata": "データ ファクトリ名",
+			"defaultValue": "yquC39yId9"
+		},
+		"AzureSqlDatabase1_connectionString": {
+			"type": "secureString",
+			"metadata": "'AzureSqlDatabase1' の 'connectionString' のセキュリティで保護された文字列"
+		},
+		"AzureStorage1_connectionString": {
+			"type": "secureString",
+			"metadata": "'AzureStorage1' の 'connectionString' のセキュリティで保護された文字列"
+		},
+		"CosmosDb1_connectionString": {
+			"type": "secureString",
+			"metadata": "'CosmosDb1' の 'connectionString' のセキュリティで保護された文字列"
+		},
+		"AzureBlob1_properties_typeProperties_fileName": {
+			"type": "string",
+			"defaultValue": "list_person_all_extended_utf8.zip"
+		},
+		"AzureBlob1_properties_typeProperties_folderPath": {
+			"type": "string",
+			"defaultValue": "aozora"
+		},
+		"SourceDataset_92p_properties_typeProperties_fileName": {
+			"type": "string",
+			"defaultValue": "list_person_all_extended_utf8.zip"
+		},
+		"SourceDataset_92p_properties_typeProperties_folderPath": {
+			"type": "string",
+			"defaultValue": "aozora"
+		},
+		"SourceDataset_diz_properties_typeProperties_fileName": {
+			"type": "string",
+			"defaultValue": "list_person_all_extended_utf8.zip"
+		},
+		"SourceDataset_diz_properties_typeProperties_folderPath": {
+			"type": "string",
+			"defaultValue": "aozora"
+		},
+		"Aozora_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://www.aozora.gr.jp/index_pages/list_person_all_extended_utf8.zip"
+		}
+	},
+	"variables": {
+		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
+	},
+	"resources": [
+		{
+			"name": "[concat(parameters('factoryName'), '/CopyPipeline_35x')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "Copy_35x",
+						"type": "Copy",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "0.12:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [
+							{
+								"name": "Destination",
+								"value": "Items"
+							}
+						],
+						"typeProperties": {
+							"source": {
+								"type": "DelimitedTextSource",
+								"storeSettings": {
+									"type": "HttpReadSettings",
+									"requestMethod": "GET"
+								},
+								"formatSettings": {
+									"type": "DelimitedTextReadSettings",
+									"skipLineCount": "0",
+									"compressionProperties": {
+										"type": "ZipDeflateReadSettings"
+									}
+								}
+							},
+							"sink": {
+								"type": "CosmosDbSqlApiSink",
+								"writeBehavior": "insert"
+							},
+							"enableStaging": false,
+							"translator": {
+								"type": "TabularTranslator",
+								"mappings": [
+									{
+										"source": {
+											"name": "作品ID",
+											"type": "String"
+										},
+										"sink": {
+											"path": "$['book_id']"
+										}
+									},
+									{
+										"source": {
+											"name": "作品名",
+											"type": "String"
+										},
+										"sink": {
+											"path": "$['title']"
+										}
+									},
+									{
+										"source": {
+											"name": "作品名読み",
+											"type": "String"
+										},
+										"sink": {
+											"path": "$['title_yomi']"
+										}
+									},
+									{
+										"source": {
+											"name": "ソート用読み",
+											"type": "String"
+										},
+										"sink": {
+											"path": "$['title_sort']"
+										}
+									},
+									{
+										"source": {
+											"name": "副題",
+											"type": "String"
+										},
+										"sink": {
+											"path": "$['subtitle']"
+										}
+									},
+									{
+										"source": {
+											"name": "副題読み",
+											"type": "String"
+										},
+										"sink": {
+											"path": "$['subtitle_yomi']"
+										}
+									},
+									{
+										"source": {
+											"name": "原題",
+											"type": "String"
+										},
+										"sink": {
+											"path": "$['original_title']"
+										}
+									},
+									{
+										"source": {
+											"name": "初出",
+											"type": "String"
+										},
+										"sink": {
+											"path": "$['first_appearance']"
+										}
+									},
+									{
+										"source": {
+											"name": "分類番号",
+											"type": "String"
+										},
+										"sink": {
+											"path": "$['ndc_code']"
+										}
+									},
+									{
+										"source": {
+											"name": "文字遣い種別",
+											"type": "String"
+										},
+										"sink": {
+											"path": "$['font_kana_type']"
+										}
+									},
+									{
+										"source": {
+											"name": "作品著作権フラグ",
+											"type": "String"
+										},
+										"sink": {
+											"path": "$['copyright']"
+										}
+									},
+									{
+										"source": {
+											"name": "公開日",
+											"type": "String"
+										},
+										"sink": {
+											"path": "$['release_date']"
+										}
+									},
+									{
+										"source": {
+											"name": "最終更新日",
+											"type": "String"
+										},
+										"sink": {
+											"path": "$['last_modified']"
+										}
+									},
+									{
+										"source": {
+											"name": "図書カードURL",
+											"type": "String"
+										},
+										"sink": {
+											"path": "$['card_url']"
+										}
+									},
+									{
+										"source": {
+											"name": "人物ID",
+											"type": "String"
+										},
+										"sink": {
+											"path": "$['person_id']"
+										}
+									},
+									{
+										"source": {
+											"name": "姓",
+											"type": "String"
+										},
+										"sink": {
+											"path": "$['last_name']"
+										}
+									},
+									{
+										"source": {
+											"name": "名",
+											"type": "String"
+										},
+										"sink": {
+											"path": "$['first_name']"
+										}
+									},
+									{
+										"source": {
+											"name": "姓読み",
+											"type": "String"
+										},
+										"sink": {
+											"path": "$['last_name_yomi']"
+										}
+									},
+									{
+										"source": {
+											"name": "名読み",
+											"type": "String"
+										},
+										"sink": {
+											"path": "$['first_name_yomi']"
+										}
+									},
+									{
+										"source": {
+											"name": "姓読みソート用",
+											"type": "String"
+										},
+										"sink": {
+											"path": "$['last_name_sort']"
+										}
+									},
+									{
+										"source": {
+											"name": "名読みソート用",
+											"type": "String"
+										},
+										"sink": {
+											"path": "$['first_name_sort']"
+										}
+									},
+									{
+										"source": {
+											"name": "姓ローマ字",
+											"type": "String"
+										},
+										"sink": {
+											"path": "$['last_name_roman']"
+										}
+									},
+									{
+										"source": {
+											"name": "名ローマ字",
+											"type": "String"
+										},
+										"sink": {
+											"path": "$['first_name_roman']"
+										}
+									},
+									{
+										"source": {
+											"name": "役割フラグ",
+											"type": "String"
+										},
+										"sink": {
+											"path": "$['role']"
+										}
+									},
+									{
+										"source": {
+											"name": "生年月日",
+											"type": "String"
+										},
+										"sink": {
+											"path": "$['date_of_birth']"
+										}
+									},
+									{
+										"source": {
+											"name": "没年月日",
+											"type": "String"
+										},
+										"sink": {
+											"path": "$['date_of_death']"
+										}
+									},
+									{
+										"source": {
+											"name": "人物著作権フラグ",
+											"type": "String"
+										},
+										"sink": {
+											"path": "$['author_copyright']"
+										}
+									},
+									{
+										"source": {
+											"name": "底本名1",
+											"type": "String"
+										},
+										"sink": {
+											"path": "$['base_book_1']"
+										}
+									},
+									{
+										"source": {
+											"name": "底本出版社名1",
+											"type": "String"
+										},
+										"sink": {
+											"path": "$['base_book_1_publisher']"
+										}
+									},
+									{
+										"source": {
+											"name": "底本初版発行年1",
+											"type": "String"
+										},
+										"sink": {
+											"path": "$['base_book_1_1st_edition']"
+										}
+									},
+									{
+										"source": {
+											"name": "入力に使用した版1",
+											"type": "String"
+										},
+										"sink": {
+											"path": "$['base_book_1_edition_input']"
+										}
+									},
+									{
+										"source": {
+											"name": "校正に使用した版1",
+											"type": "String"
+										},
+										"sink": {
+											"path": "$['base_book_1_edition_proofing']"
+										}
+									},
+									{
+										"source": {
+											"name": "底本の親本名1",
+											"type": "String"
+										},
+										"sink": {
+											"path": "$['base_book_1_parent']"
+										}
+									},
+									{
+										"source": {
+											"name": "底本の親本出版社名1",
+											"type": "String"
+										},
+										"sink": {
+											"path": "$['base_book_1_parent_publisher']"
+										}
+									},
+									{
+										"source": {
+											"name": "底本の親本初版発行年1",
+											"type": "String"
+										},
+										"sink": {
+											"path": "$['base_book_1_parent_1st_edition']"
+										}
+									},
+									{
+										"source": {
+											"name": "底本名2",
+											"type": "String"
+										},
+										"sink": {
+											"path": "$['base_book_2']"
+										}
+									},
+									{
+										"source": {
+											"name": "底本出版社名2",
+											"type": "String"
+										},
+										"sink": {
+											"path": "$['base_book_2_publisher']"
+										}
+									},
+									{
+										"source": {
+											"name": "底本初版発行年2",
+											"type": "String"
+										},
+										"sink": {
+											"path": "$['base_book_2_1st_edition']"
+										}
+									},
+									{
+										"source": {
+											"name": "入力に使用した版2",
+											"type": "String"
+										},
+										"sink": {
+											"path": "$['base_book_2_edition_input']"
+										}
+									},
+									{
+										"source": {
+											"name": "校正に使用した版2",
+											"type": "String"
+										},
+										"sink": {
+											"path": "$['base_book_2_edition_proofing']"
+										}
+									},
+									{
+										"source": {
+											"name": "底本の親本名2",
+											"type": "String"
+										},
+										"sink": {
+											"path": "$['base_book_2_parent']"
+										}
+									},
+									{
+										"source": {
+											"name": "底本の親本出版社名2",
+											"type": "String"
+										},
+										"sink": {
+											"path": "$['base_book_2_parent_publisher']"
+										}
+									},
+									{
+										"source": {
+											"name": "底本の親本初版発行年2",
+											"type": "String"
+										},
+										"sink": {
+											"path": "$['base_book_2_parent_1st_edition']"
+										}
+									},
+									{
+										"source": {
+											"name": "入力者",
+											"type": "String"
+										},
+										"sink": {
+											"path": "$['input']"
+										}
+									},
+									{
+										"source": {
+											"name": "校正者",
+											"type": "String"
+										},
+										"sink": {
+											"path": "$['proofing']"
+										}
+									},
+									{
+										"source": {
+											"name": "テキストファイルURL",
+											"type": "String"
+										},
+										"sink": {
+											"path": "$['text_url']"
+										}
+									},
+									{
+										"source": {
+											"name": "テキストファイル最終更新日",
+											"type": "String"
+										},
+										"sink": {
+											"path": "$['text_last_modified']"
+										}
+									},
+									{
+										"source": {
+											"name": "テキストファイル符号化方式",
+											"type": "String"
+										},
+										"sink": {
+											"path": "$['text_encoding']"
+										}
+									},
+									{
+										"source": {
+											"name": "テキストファイル文字集合",
+											"type": "String"
+										},
+										"sink": {
+											"path": "$['text_charset']"
+										}
+									},
+									{
+										"source": {
+											"name": "テキストファイル修正回数",
+											"type": "String"
+										},
+										"sink": {
+											"path": "$['text_updated']"
+										}
+									},
+									{
+										"source": {
+											"name": "XHTML/HTMLファイルURL",
+											"type": "String"
+										},
+										"sink": {
+											"path": "$['html_url']"
+										}
+									},
+									{
+										"source": {
+											"name": "XHTML/HTMLファイル最終更新日"
+										},
+										"sink": {
+											"path": "$['html_last_modified']"
+										}
+									},
+									{
+										"source": {
+											"name": "XHTML/HTMLファイル符号化方式",
+											"type": "String"
+										},
+										"sink": {
+											"path": "$['html_encoding']"
+										}
+									},
+									{
+										"source": {
+											"name": "XHTML/HTMLファイル文字集合",
+											"type": "String"
+										},
+										"sink": {
+											"path": "$['html_charset']"
+										}
+									},
+									{
+										"source": {
+											"name": "XHTML/HTMLファイル修正回数",
+											"type": "String"
+										},
+										"sink": {
+											"path": "$['html_updated']"
+										}
+									}
+								]
+							}
+						},
+						"inputs": [
+							{
+								"referenceName": "SourceDataset_35x",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "DestinationDataset_35x",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						]
+					}
+				],
+				"policy": {
+					"elapsedTimeMetric": {},
+					"cancelAfter": {}
+				},
+				"annotations": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/datasets/SourceDataset_35x')]",
+				"[concat(variables('factoryId'), '/datasets/DestinationDataset_35x')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/AzureBlob1')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureStorage1",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureBlob",
+				"typeProperties": {
+					"fileName": "[parameters('AzureBlob1_properties_typeProperties_fileName')]",
+					"folderPath": "[parameters('AzureBlob1_properties_typeProperties_folderPath')]"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/AzureStorage1')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/DestinationDataset_35x')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "CosmosDb1",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "CosmosDbSqlApiCollection",
+				"schema": {
+					"type": "object",
+					"properties": {
+						"partitionKey": {
+							"type": "string"
+						},
+						"book_id": {
+							"type": "string"
+						},
+						"title": {
+							"type": "string"
+						},
+						"title_yomi": {
+							"type": "string"
+						},
+						"title_sort": {
+							"type": "string"
+						},
+						"subtitle": {
+							"type": "string"
+						},
+						"subtitle_yomi": {
+							"type": "string"
+						},
+						"original_title": {
+							"type": "string"
+						},
+						"first_appearance": {
+							"type": "string"
+						},
+						"ndc_code": {
+							"type": "string"
+						},
+						"font_kana_type": {
+							"type": "string"
+						},
+						"copyright": {
+							"type": "string"
+						},
+						"release_date": {
+							"type": "string"
+						},
+						"last_modified": {
+							"type": "string"
+						},
+						"card_url": {
+							"type": "string"
+						},
+						"person_id": {
+							"type": "string"
+						},
+						"last_name": {
+							"type": "string"
+						},
+						"first_name": {
+							"type": "string"
+						},
+						"last_name_yomi": {
+							"type": "string"
+						},
+						"first_name_yomi": {
+							"type": "string"
+						},
+						"last_name_sort": {
+							"type": "string"
+						},
+						"first_name_sort": {
+							"type": "string"
+						},
+						"last_name_roman": {
+							"type": "string"
+						},
+						"first_name_roman": {
+							"type": "string"
+						},
+						"role": {
+							"type": "string"
+						},
+						"date_of_birth": {
+							"type": "string"
+						},
+						"date_of_death": {
+							"type": "string"
+						},
+						"author_copyright": {
+							"type": "string"
+						},
+						"base_book_1": {
+							"type": "string"
+						},
+						"base_book_1_publisher": {
+							"type": "string"
+						},
+						"base_book_1_1st_edition": {
+							"type": "string"
+						},
+						"base_book_1_edition_input": {
+							"type": "string"
+						},
+						"base_book_1_edition_proofing": {
+							"type": "string"
+						},
+						"base_book_1_parent": {
+							"type": "string"
+						},
+						"base_book_1_parent_publisher": {
+							"type": "string"
+						},
+						"base_book_1_parent_1st_edition": {
+							"type": "string"
+						},
+						"base_book_2": {
+							"type": "string"
+						},
+						"base_book_2_publisher": {
+							"type": "string"
+						},
+						"base_book_2_1st_edition": {
+							"type": "string"
+						},
+						"base_book_2_edition_input": {
+							"type": "string"
+						},
+						"base_book_2_edition_proofing": {
+							"type": "string"
+						},
+						"base_book_2_parent": {
+							"type": "string"
+						},
+						"base_book_2_parent_publisher": {
+							"type": "string"
+						},
+						"base_book_2_parent_1st_edition": {
+							"type": "string"
+						},
+						"input": {
+							"type": "string"
+						},
+						"proofing": {
+							"type": "string"
+						},
+						"text_url": {
+							"type": "string"
+						},
+						"text_last_modified": {
+							"type": "string"
+						},
+						"text_encoding": {
+							"type": "string"
+						},
+						"text_charset": {
+							"type": "string"
+						},
+						"text_updated": {
+							"type": "string"
+						},
+						"html_url": {
+							"type": "string"
+						},
+						"html_last_modified": {
+							"type": "string"
+						},
+						"html_encoding": {
+							"type": "string"
+						},
+						"html_charset": {
+							"type": "string"
+						},
+						"html_updated": {
+							"type": "string"
+						}
+					}
+				},
+				"typeProperties": {
+					"collectionName": "Items"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/CosmosDb1')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/SourceDataset_35x')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "Aozora",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "HttpServerLocation"
+					},
+					"columnDelimiter": ",",
+					"compressionCodec": "ZipDeflate",
+					"escapeChar": "\\",
+					"firstRowAsHeader": true,
+					"quoteChar": "\""
+				},
+				"schema": [
+					{
+						"name": "作品ID",
+						"type": "String"
+					},
+					{
+						"name": "作品名",
+						"type": "String"
+					},
+					{
+						"name": "作品名読み",
+						"type": "String"
+					},
+					{
+						"name": "ソート用読み",
+						"type": "String"
+					},
+					{
+						"name": "副題",
+						"type": "String"
+					},
+					{
+						"name": "副題読み",
+						"type": "String"
+					},
+					{
+						"name": "原題",
+						"type": "String"
+					},
+					{
+						"name": "初出",
+						"type": "String"
+					},
+					{
+						"name": "分類番号",
+						"type": "String"
+					},
+					{
+						"name": "文字遣い種別",
+						"type": "String"
+					},
+					{
+						"name": "作品著作権フラグ",
+						"type": "String"
+					},
+					{
+						"name": "公開日",
+						"type": "String"
+					},
+					{
+						"name": "最終更新日",
+						"type": "String"
+					},
+					{
+						"name": "図書カードURL",
+						"type": "String"
+					},
+					{
+						"name": "人物ID",
+						"type": "String"
+					},
+					{
+						"name": "姓",
+						"type": "String"
+					},
+					{
+						"name": "名",
+						"type": "String"
+					},
+					{
+						"name": "姓読み",
+						"type": "String"
+					},
+					{
+						"name": "名読み",
+						"type": "String"
+					},
+					{
+						"name": "姓読みソート用",
+						"type": "String"
+					},
+					{
+						"name": "名読みソート用",
+						"type": "String"
+					},
+					{
+						"name": "姓ローマ字",
+						"type": "String"
+					},
+					{
+						"name": "名ローマ字",
+						"type": "String"
+					},
+					{
+						"name": "役割フラグ",
+						"type": "String"
+					},
+					{
+						"name": "生年月日",
+						"type": "String"
+					},
+					{
+						"name": "没年月日",
+						"type": "String"
+					},
+					{
+						"name": "人物著作権フラグ",
+						"type": "String"
+					},
+					{
+						"name": "底本名1",
+						"type": "String"
+					},
+					{
+						"name": "底本出版社名1",
+						"type": "String"
+					},
+					{
+						"name": "底本初版発行年1",
+						"type": "String"
+					},
+					{
+						"name": "入力に使用した版1",
+						"type": "String"
+					},
+					{
+						"name": "校正に使用した版1",
+						"type": "String"
+					},
+					{
+						"name": "底本の親本名1",
+						"type": "String"
+					},
+					{
+						"name": "底本の親本出版社名1",
+						"type": "String"
+					},
+					{
+						"name": "底本の親本初版発行年1",
+						"type": "String"
+					},
+					{
+						"name": "底本名2",
+						"type": "String"
+					},
+					{
+						"name": "底本出版社名2",
+						"type": "String"
+					},
+					{
+						"name": "底本初版発行年2",
+						"type": "String"
+					},
+					{
+						"name": "入力に使用した版2",
+						"type": "String"
+					},
+					{
+						"name": "校正に使用した版2",
+						"type": "String"
+					},
+					{
+						"name": "底本の親本名2",
+						"type": "String"
+					},
+					{
+						"name": "底本の親本出版社名2",
+						"type": "String"
+					},
+					{
+						"name": "底本の親本初版発行年2",
+						"type": "String"
+					},
+					{
+						"name": "入力者",
+						"type": "String"
+					},
+					{
+						"name": "校正者",
+						"type": "String"
+					},
+					{
+						"name": "テキストファイルURL",
+						"type": "String"
+					},
+					{
+						"name": "テキストファイル最終更新日",
+						"type": "String"
+					},
+					{
+						"name": "テキストファイル符号化方式",
+						"type": "String"
+					},
+					{
+						"name": "テキストファイル文字集合",
+						"type": "String"
+					},
+					{
+						"name": "テキストファイル修正回数",
+						"type": "String"
+					},
+					{
+						"name": "XHTML/HTMLファイルURL",
+						"type": "String"
+					},
+					{
+						"name": "XHTML/HTMLファイル最終更新日",
+						"type": "String"
+					},
+					{
+						"name": "XHTML/HTMLファイル符号化方式",
+						"type": "String"
+					},
+					{
+						"name": "XHTML/HTMLファイル文字集合",
+						"type": "String"
+					},
+					{
+						"name": "XHTML/HTMLファイル修正回数",
+						"type": "String"
+					}
+				]
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/Aozora')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/SourceDataset_92p')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureStorage1",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureBlob",
+				"structure": [
+					{
+						"name": "作品ID",
+						"type": "Int32"
+					},
+					{
+						"name": "作品名",
+						"type": "String"
+					},
+					{
+						"name": "作品名読み",
+						"type": "String"
+					},
+					{
+						"name": "ソート用読み",
+						"type": "String"
+					},
+					{
+						"name": "副題",
+						"type": "String"
+					},
+					{
+						"name": "副題読み",
+						"type": "String"
+					},
+					{
+						"name": "原題",
+						"type": "String"
+					},
+					{
+						"name": "初出",
+						"type": "String"
+					},
+					{
+						"name": "分類番号",
+						"type": "String"
+					},
+					{
+						"name": "文字遣い種別",
+						"type": "String"
+					},
+					{
+						"name": "作品著作権フラグ",
+						"type": "String"
+					},
+					{
+						"name": "公開日",
+						"type": "String"
+					},
+					{
+						"name": "最終更新日",
+						"type": "String"
+					},
+					{
+						"name": "図書カードURL",
+						"type": "String"
+					},
+					{
+						"name": "人物ID",
+						"type": "Int32"
+					},
+					{
+						"name": "姓",
+						"type": "String"
+					},
+					{
+						"name": "名",
+						"type": "String"
+					},
+					{
+						"name": "姓読み",
+						"type": "String"
+					},
+					{
+						"name": "名読み",
+						"type": "String"
+					},
+					{
+						"name": "姓読みソート用",
+						"type": "String"
+					},
+					{
+						"name": "名読みソート用",
+						"type": "String"
+					},
+					{
+						"name": "姓ローマ字",
+						"type": "String"
+					},
+					{
+						"name": "名ローマ字",
+						"type": "String"
+					},
+					{
+						"name": "役割フラグ",
+						"type": "String"
+					},
+					{
+						"name": "生年月日",
+						"type": "String"
+					},
+					{
+						"name": "没年月日",
+						"type": "String"
+					},
+					{
+						"name": "人物著作権フラグ",
+						"type": "String"
+					},
+					{
+						"name": "底本名1",
+						"type": "String"
+					},
+					{
+						"name": "底本出版社名1",
+						"type": "String"
+					},
+					{
+						"name": "底本初版発行年1",
+						"type": "String"
+					},
+					{
+						"name": "入力に使用した版1",
+						"type": "String"
+					},
+					{
+						"name": "校正に使用した版1",
+						"type": "String"
+					},
+					{
+						"name": "底本の親本名1",
+						"type": "String"
+					},
+					{
+						"name": "底本の親本出版社名1",
+						"type": "String"
+					},
+					{
+						"name": "底本の親本初版発行年1",
+						"type": "String"
+					},
+					{
+						"name": "底本名2",
+						"type": "String"
+					},
+					{
+						"name": "底本出版社名2",
+						"type": "String"
+					},
+					{
+						"name": "底本初版発行年2",
+						"type": "String"
+					},
+					{
+						"name": "入力に使用した版2",
+						"type": "String"
+					},
+					{
+						"name": "校正に使用した版2",
+						"type": "String"
+					},
+					{
+						"name": "底本の親本名2",
+						"type": "String"
+					},
+					{
+						"name": "底本の親本出版社名2",
+						"type": "String"
+					},
+					{
+						"name": "底本の親本初版発行年2",
+						"type": "String"
+					},
+					{
+						"name": "入力者",
+						"type": "String"
+					},
+					{
+						"name": "校正者",
+						"type": "String"
+					},
+					{
+						"name": "テキストファイルURL",
+						"type": "String"
+					},
+					{
+						"name": "テキストファイル最終更新日",
+						"type": "String"
+					},
+					{
+						"name": "テキストファイル符号化方式",
+						"type": "String"
+					},
+					{
+						"name": "テキストファイル文字集合",
+						"type": "String"
+					},
+					{
+						"name": "テキストファイル修正回数",
+						"type": "String"
+					},
+					{
+						"name": "XHTML/HTMLファイルURL",
+						"type": "String"
+					},
+					{
+						"name": "XHTML/HTMLファイル最終更新日",
+						"type": "String"
+					},
+					{
+						"name": "XHTML/HTMLファイル符号化方式",
+						"type": "String"
+					},
+					{
+						"name": "XHTML/HTMLファイル文字集合",
+						"type": "String"
+					},
+					{
+						"name": "XHTML/HTMLファイル修正回数",
+						"type": "String"
+					}
+				],
+				"typeProperties": {
+					"format": {
+						"type": "TextFormat",
+						"columnDelimiter": ",",
+						"rowDelimiter": "",
+						"quoteChar": "\"",
+						"treatEmptyAsNull": true,
+						"skipLineCount": 0,
+						"firstRowAsHeader": true
+					},
+					"compression": {
+						"type": "ZipDeflate",
+						"level": "Fastest"
+					},
+					"fileName": "[parameters('SourceDataset_92p_properties_typeProperties_fileName')]",
+					"folderPath": "[parameters('SourceDataset_92p_properties_typeProperties_folderPath')]"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/AzureStorage1')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/SourceDataset_diz')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureStorage1",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureBlob",
+				"structure": [
+					{
+						"name": "作品ID",
+						"type": "Int32"
+					},
+					{
+						"name": "作品名",
+						"type": "String"
+					},
+					{
+						"name": "作品名読み",
+						"type": "String"
+					},
+					{
+						"name": "ソート用読み",
+						"type": "String"
+					},
+					{
+						"name": "副題",
+						"type": "String"
+					},
+					{
+						"name": "副題読み",
+						"type": "String"
+					},
+					{
+						"name": "原題",
+						"type": "String"
+					},
+					{
+						"name": "初出",
+						"type": "String"
+					},
+					{
+						"name": "分類番号",
+						"type": "String"
+					},
+					{
+						"name": "文字遣い種別",
+						"type": "String"
+					},
+					{
+						"name": "作品著作権フラグ",
+						"type": "String"
+					},
+					{
+						"name": "公開日",
+						"type": "String"
+					},
+					{
+						"name": "最終更新日",
+						"type": "String"
+					},
+					{
+						"name": "図書カードURL",
+						"type": "String"
+					},
+					{
+						"name": "人物ID",
+						"type": "Int32"
+					},
+					{
+						"name": "姓",
+						"type": "String"
+					},
+					{
+						"name": "名",
+						"type": "String"
+					},
+					{
+						"name": "姓読み",
+						"type": "String"
+					},
+					{
+						"name": "名読み",
+						"type": "String"
+					},
+					{
+						"name": "姓読みソート用",
+						"type": "String"
+					},
+					{
+						"name": "名読みソート用",
+						"type": "String"
+					},
+					{
+						"name": "姓ローマ字",
+						"type": "String"
+					},
+					{
+						"name": "名ローマ字",
+						"type": "String"
+					},
+					{
+						"name": "役割フラグ",
+						"type": "String"
+					},
+					{
+						"name": "生年月日",
+						"type": "String"
+					},
+					{
+						"name": "没年月日",
+						"type": "String"
+					},
+					{
+						"name": "人物著作権フラグ",
+						"type": "String"
+					},
+					{
+						"name": "底本名1",
+						"type": "String"
+					},
+					{
+						"name": "底本出版社名1",
+						"type": "String"
+					},
+					{
+						"name": "底本初版発行年1",
+						"type": "String"
+					},
+					{
+						"name": "入力に使用した版1",
+						"type": "String"
+					},
+					{
+						"name": "校正に使用した版1",
+						"type": "String"
+					},
+					{
+						"name": "底本の親本名1",
+						"type": "String"
+					},
+					{
+						"name": "底本の親本出版社名1",
+						"type": "String"
+					},
+					{
+						"name": "底本の親本初版発行年1",
+						"type": "String"
+					},
+					{
+						"name": "底本名2",
+						"type": "String"
+					},
+					{
+						"name": "底本出版社名2",
+						"type": "String"
+					},
+					{
+						"name": "底本初版発行年2",
+						"type": "String"
+					},
+					{
+						"name": "入力に使用した版2",
+						"type": "String"
+					},
+					{
+						"name": "校正に使用した版2",
+						"type": "String"
+					},
+					{
+						"name": "底本の親本名2",
+						"type": "String"
+					},
+					{
+						"name": "底本の親本出版社名2",
+						"type": "String"
+					},
+					{
+						"name": "底本の親本初版発行年2",
+						"type": "String"
+					},
+					{
+						"name": "入力者",
+						"type": "String"
+					},
+					{
+						"name": "校正者",
+						"type": "String"
+					},
+					{
+						"name": "テキストファイルURL",
+						"type": "String"
+					},
+					{
+						"name": "テキストファイル最終更新日",
+						"type": "String"
+					},
+					{
+						"name": "テキストファイル符号化方式",
+						"type": "String"
+					},
+					{
+						"name": "テキストファイル文字集合",
+						"type": "String"
+					},
+					{
+						"name": "テキストファイル修正回数",
+						"type": "String"
+					},
+					{
+						"name": "XHTML/HTMLファイルURL",
+						"type": "String"
+					},
+					{
+						"name": "XHTML/HTMLファイル最終更新日",
+						"type": "String"
+					},
+					{
+						"name": "XHTML/HTMLファイル符号化方式",
+						"type": "String"
+					},
+					{
+						"name": "XHTML/HTMLファイル文字集合",
+						"type": "String"
+					},
+					{
+						"name": "XHTML/HTMLファイル修正回数",
+						"type": "String"
+					}
+				],
+				"typeProperties": {
+					"format": {
+						"type": "TextFormat",
+						"columnDelimiter": ",",
+						"rowDelimiter": "",
+						"quoteChar": "\"",
+						"nullValue": "\\N",
+						"encodingName": null,
+						"treatEmptyAsNull": true,
+						"skipLineCount": 0,
+						"firstRowAsHeader": true
+					},
+					"compression": {
+						"type": "ZipDeflate",
+						"level": "Fastest"
+					},
+					"fileName": "[parameters('SourceDataset_diz_properties_typeProperties_fileName')]",
+					"folderPath": "[parameters('SourceDataset_diz_properties_typeProperties_folderPath')]"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/AzureStorage1')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Aozora')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "HttpServer",
+				"typeProperties": {
+					"url": "[parameters('Aozora_properties_typeProperties_url')]",
+					"enableServerCertificateValidation": true,
+					"authenticationType": "Anonymous"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/AzureSqlDatabase1')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureSqlDatabase",
+				"typeProperties": {
+					"connectionString": "[parameters('AzureSqlDatabase1_connectionString')]"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/AzureStorage1')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureBlobStorage",
+				"typeProperties": {
+					"connectionString": "[parameters('AzureStorage1_connectionString')]"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/CosmosDb1')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "CosmosDb",
+				"typeProperties": {
+					"connectionString": "[parameters('CosmosDb1_connectionString')]"
+				}
+			},
+			"dependsOn": []
+		}
+	]
+}

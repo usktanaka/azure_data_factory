@@ -1,0 +1,112 @@
+{
+	"$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"type": "string",
+			"metadata": "データ ファクトリ名",
+			"defaultValue": "yquC39yId9"
+		},
+		"AzureSqlDatabase1_connectionString": {
+			"type": "secureString",
+			"metadata": "'AzureSqlDatabase1' の 'connectionString' のセキュリティで保護された文字列"
+		},
+		"AzureStorage1_connectionString": {
+			"type": "secureString",
+			"metadata": "'AzureStorage1' の 'connectionString' のセキュリティで保護された文字列"
+		},
+		"CosmosDb1_connectionString": {
+			"type": "secureString",
+			"metadata": "'CosmosDb1' の 'connectionString' のセキュリティで保護された文字列"
+		},
+		"AzureBlob1_properties_typeProperties_fileName": {
+			"type": "string",
+			"defaultValue": "list_person_all_extended_utf8.zip"
+		},
+		"AzureBlob1_properties_typeProperties_folderPath": {
+			"type": "string",
+			"defaultValue": "aozora"
+		},
+		"SourceDataset_92p_properties_typeProperties_fileName": {
+			"type": "string",
+			"defaultValue": "list_person_all_extended_utf8.zip"
+		},
+		"SourceDataset_92p_properties_typeProperties_folderPath": {
+			"type": "string",
+			"defaultValue": "aozora"
+		},
+		"SourceDataset_diz_properties_typeProperties_fileName": {
+			"type": "string",
+			"defaultValue": "list_person_all_extended_utf8.zip"
+		},
+		"SourceDataset_diz_properties_typeProperties_folderPath": {
+			"type": "string",
+			"defaultValue": "aozora"
+		},
+		"Aozora_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://www.aozora.gr.jp/index_pages/list_person_all_extended_utf8.zip"
+		},
+		"containerUri": {
+			"type": "string",
+			"metadata": "リンクされた ARM テンプレートを含むストレージ アカウントの URI"
+		},
+		"containerSasToken": {
+			"type": "string",
+			"metadata": "リンクされた ARM テンプレートを格納するストレージ アカウントへの SAS トークン"
+		}
+	},
+	"variables": {
+		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
+	},
+	"resources": [
+		{
+			"name": "yquC39yId9_ArmTemplate_0",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2018-02-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_0.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					},
+					"AzureSqlDatabase1_connectionString": {
+						"value": "[parameters('AzureSqlDatabase1_connectionString')]"
+					},
+					"AzureStorage1_connectionString": {
+						"value": "[parameters('AzureStorage1_connectionString')]"
+					},
+					"CosmosDb1_connectionString": {
+						"value": "[parameters('CosmosDb1_connectionString')]"
+					},
+					"Aozora_properties_typeProperties_url": {
+						"value": "[parameters('Aozora_properties_typeProperties_url')]"
+					},
+					"AzureBlob1_properties_typeProperties_fileName": {
+						"value": "[parameters('AzureBlob1_properties_typeProperties_fileName')]"
+					},
+					"AzureBlob1_properties_typeProperties_folderPath": {
+						"value": "[parameters('AzureBlob1_properties_typeProperties_folderPath')]"
+					},
+					"SourceDataset_92p_properties_typeProperties_fileName": {
+						"value": "[parameters('SourceDataset_92p_properties_typeProperties_fileName')]"
+					},
+					"SourceDataset_92p_properties_typeProperties_folderPath": {
+						"value": "[parameters('SourceDataset_92p_properties_typeProperties_folderPath')]"
+					},
+					"SourceDataset_diz_properties_typeProperties_fileName": {
+						"value": "[parameters('SourceDataset_diz_properties_typeProperties_fileName')]"
+					},
+					"SourceDataset_diz_properties_typeProperties_folderPath": {
+						"value": "[parameters('SourceDataset_diz_properties_typeProperties_folderPath')]"
+					}
+				}
+			},
+			"dependsOn": []
+		}
+	]
+}

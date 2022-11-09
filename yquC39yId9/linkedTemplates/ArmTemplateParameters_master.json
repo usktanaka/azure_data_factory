@@ -1,0 +1,45 @@
+{
+	"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"value": "yquC39yId9"
+		},
+		"AzureSqlDatabase1_connectionString": {
+			"value": ""
+		},
+		"AzureStorage1_connectionString": {
+			"value": ""
+		},
+		"CosmosDb1_connectionString": {
+			"value": ""
+		},
+		"AzureBlob1_properties_typeProperties_fileName": {
+			"value": "list_person_all_extended_utf8.zip"
+		},
+		"AzureBlob1_properties_typeProperties_folderPath": {
+			"value": "aozora"
+		},
+		"SourceDataset_92p_properties_typeProperties_fileName": {
+			"value": "list_person_all_extended_utf8.zip"
+		},
+		"SourceDataset_92p_properties_typeProperties_folderPath": {
+			"value": "aozora"
+		},
+		"SourceDataset_diz_properties_typeProperties_fileName": {
+			"value": "list_person_all_extended_utf8.zip"
+		},
+		"SourceDataset_diz_properties_typeProperties_folderPath": {
+			"value": "aozora"
+		},
+		"Aozora_properties_typeProperties_url": {
+			"value": "https://www.aozora.gr.jp/index_pages/list_person_all_extended_utf8.zip"
+		},
+		"containerUri": {
+			"value": ""
+		},
+		"containerSasToken": {
+			"value": ""
+		}
+	}
+}
