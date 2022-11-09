@@ -234,6 +234,7 @@
 				"type": "TextFormat",
 				"columnDelimiter": ",",
 				"rowDelimiter": "",
+				"escapeChar": "\"",
 				"quoteChar": "\"",
 				"treatEmptyAsNull": true,
 				"skipLineCount": 0,
