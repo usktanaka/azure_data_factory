@@ -44,15 +44,6 @@
 						"mappings": [
 							{
 								"source": {
-									"name": "人物ID",
-									"type": "String"
-								},
-								"sink": {
-									"path": "$['partitionKey']"
-								}
-							},
-							{
-								"source": {
 									"name": "作品ID",
 									"type": "String"
 								},
@@ -512,8 +503,7 @@
 							},
 							{
 								"source": {
-									"name": "テキストファイル最終更新日",
-									"type": "String"
+									"name": "XHTML/HTMLファイル最終更新日"
 								},
 								"sink": {
 									"path": "$['html_last_modified']"
