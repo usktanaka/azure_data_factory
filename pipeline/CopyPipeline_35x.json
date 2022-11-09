@@ -53,7 +53,7 @@
 									"type": "String"
 								},
 								"sink": {
-									"path": "$['book_id']"
+									"path": "$['id']"
 								}
 							},
 							{
@@ -179,7 +179,7 @@
 									"type": "String"
 								},
 								"sink": {
-									"path": "$['person_id']"
+									"path": "$['partitionKey']"
 								}
 							},
 							{
