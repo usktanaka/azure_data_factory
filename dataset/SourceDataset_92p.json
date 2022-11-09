@@ -10,7 +10,7 @@
 		"structure": [
 			{
 				"name": "作品ID",
-				"type": "Int32"
+				"type": "String"
 			},
 			{
 				"name": "作品名",
@@ -66,7 +66,7 @@
 			},
 			{
 				"name": "人物ID",
-				"type": "Int32"
+				"type": "String"
 			},
 			{
 				"name": "姓",
