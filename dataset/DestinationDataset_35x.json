@@ -1,0 +1,187 @@
+{
+	"name": "DestinationDataset_35x",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "CosmosDb1",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "CosmosDbSqlApiCollection",
+		"schema": {
+			"type": "object",
+			"properties": {
+				"partitionKey": {
+					"type": "string"
+				},
+				"book_id": {
+					"type": "string"
+				},
+				"title": {
+					"type": "string"
+				},
+				"title_yomi": {
+					"type": "string"
+				},
+				"title_sort": {
+					"type": "string"
+				},
+				"subtitle": {
+					"type": "string"
+				},
+				"subtitle_yomi": {
+					"type": "string"
+				},
+				"original_title": {
+					"type": "string"
+				},
+				"first_appearance": {
+					"type": "string"
+				},
+				"ndc_code": {
+					"type": "string"
+				},
+				"font_kana_type": {
+					"type": "string"
+				},
+				"copyright": {
+					"type": "string"
+				},
+				"release_date": {
+					"type": "string"
+				},
+				"last_modified": {
+					"type": "string"
+				},
+				"card_url": {
+					"type": "string"
+				},
+				"person_id": {
+					"type": "string"
+				},
+				"last_name": {
+					"type": "string"
+				},
+				"first_name": {
+					"type": "string"
+				},
+				"last_name_yomi": {
+					"type": "string"
+				},
+				"first_name_yomi": {
+					"type": "string"
+				},
+				"last_name_sort": {
+					"type": "string"
+				},
+				"first_name_sort": {
+					"type": "string"
+				},
+				"last_name_roman": {
+					"type": "string"
+				},
+				"first_name_roman": {
+					"type": "string"
+				},
+				"role": {
+					"type": "string"
+				},
+				"date_of_birth": {
+					"type": "string"
+				},
+				"date_of_death": {
+					"type": "string"
+				},
+				"author_copyright": {
+					"type": "string"
+				},
+				"base_book_1": {
+					"type": "string"
+				},
+				"base_book_1_publisher": {
+					"type": "string"
+				},
+				"base_book_1_1st_edition": {
+					"type": "string"
+				},
+				"base_book_1_edition_input": {
+					"type": "string"
+				},
+				"base_book_1_edition_proofing": {
+					"type": "string"
+				},
+				"base_book_1_parent": {
+					"type": "string"
+				},
+				"base_book_1_parent_publisher": {
+					"type": "string"
+				},
+				"base_book_1_parent_1st_edition": {
+					"type": "string"
+				},
+				"base_book_2": {
+					"type": "string"
+				},
+				"base_book_2_publisher": {
+					"type": "string"
+				},
+				"base_book_2_1st_edition": {
+					"type": "string"
+				},
+				"base_book_2_edition_input": {
+					"type": "string"
+				},
+				"base_book_2_edition_proofing": {
+					"type": "string"
+				},
+				"base_book_2_parent": {
+					"type": "string"
+				},
+				"base_book_2_parent_publisher": {
+					"type": "string"
+				},
+				"base_book_2_parent_1st_edition": {
+					"type": "string"
+				},
+				"input": {
+					"type": "string"
+				},
+				"proofing": {
+					"type": "string"
+				},
+				"text_url": {
+					"type": "string"
+				},
+				"text_last_modified": {
+					"type": "string"
+				},
+				"text_encoding": {
+					"type": "string"
+				},
+				"text_charset": {
+					"type": "string"
+				},
+				"text_updated": {
+					"type": "string"
+				},
+				"html_url": {
+					"type": "string"
+				},
+				"html_last_modified": {
+					"type": "string"
+				},
+				"html_encoding": {
+					"type": "string"
+				},
+				"html_charset": {
+					"type": "string"
+				},
+				"html_updated": {
+					"type": "string"
+				}
+			}
+		},
+		"typeProperties": {
+			"collectionName": "Items"
+		}
+	}
+}
