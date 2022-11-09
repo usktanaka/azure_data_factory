@@ -1,0 +1,568 @@
+{
+	"name": "CopyPipeline_35x",
+	"properties": {
+		"activities": [
+			{
+				"name": "Copy_35x",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [
+					{
+						"name": "Destination",
+						"value": "Items"
+					}
+				],
+				"typeProperties": {
+					"source": {
+						"type": "DelimitedTextSource",
+						"storeSettings": {
+							"type": "HttpReadSettings",
+							"requestMethod": "GET"
+						},
+						"formatSettings": {
+							"type": "DelimitedTextReadSettings",
+							"skipLineCount": "0",
+							"compressionProperties": {
+								"type": "ZipDeflateReadSettings"
+							}
+						}
+					},
+					"sink": {
+						"type": "CosmosDbSqlApiSink",
+						"writeBehavior": "insert"
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"name": "人物ID",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['partitionKey']"
+								}
+							},
+							{
+								"source": {
+									"name": "作品ID",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['book_id']"
+								}
+							},
+							{
+								"source": {
+									"name": "作品名",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['title']"
+								}
+							},
+							{
+								"source": {
+									"name": "作品名読み",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['title_yomi']"
+								}
+							},
+							{
+								"source": {
+									"name": "ソート用読み",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['title_sort']"
+								}
+							},
+							{
+								"source": {
+									"name": "副題",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['subtitle']"
+								}
+							},
+							{
+								"source": {
+									"name": "副題読み",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['subtitle_yomi']"
+								}
+							},
+							{
+								"source": {
+									"name": "原題",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['original_title']"
+								}
+							},
+							{
+								"source": {
+									"name": "初出",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['first_appearance']"
+								}
+							},
+							{
+								"source": {
+									"name": "分類番号",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['ndc_code']"
+								}
+							},
+							{
+								"source": {
+									"name": "文字遣い種別",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['font_kana_type']"
+								}
+							},
+							{
+								"source": {
+									"name": "作品著作権フラグ",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['copyright']"
+								}
+							},
+							{
+								"source": {
+									"name": "公開日",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['release_date']"
+								}
+							},
+							{
+								"source": {
+									"name": "最終更新日",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['last_modified']"
+								}
+							},
+							{
+								"source": {
+									"name": "図書カードURL",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['card_url']"
+								}
+							},
+							{
+								"source": {
+									"name": "人物ID",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['person_id']"
+								}
+							},
+							{
+								"source": {
+									"name": "姓",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['last_name']"
+								}
+							},
+							{
+								"source": {
+									"name": "名",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['first_name']"
+								}
+							},
+							{
+								"source": {
+									"name": "姓読み",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['last_name_yomi']"
+								}
+							},
+							{
+								"source": {
+									"name": "名読み",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['first_name_yomi']"
+								}
+							},
+							{
+								"source": {
+									"name": "姓読みソート用",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['last_name_sort']"
+								}
+							},
+							{
+								"source": {
+									"name": "名読みソート用",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['first_name_sort']"
+								}
+							},
+							{
+								"source": {
+									"name": "姓ローマ字",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['last_name_roman']"
+								}
+							},
+							{
+								"source": {
+									"name": "名ローマ字",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['first_name_roman']"
+								}
+							},
+							{
+								"source": {
+									"name": "役割フラグ",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['role']"
+								}
+							},
+							{
+								"source": {
+									"name": "生年月日",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['date_of_birth']"
+								}
+							},
+							{
+								"source": {
+									"name": "没年月日",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['date_of_death']"
+								}
+							},
+							{
+								"source": {
+									"name": "人物著作権フラグ",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['author_copyright']"
+								}
+							},
+							{
+								"source": {
+									"name": "底本名1",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['base_book_1']"
+								}
+							},
+							{
+								"source": {
+									"name": "底本出版社名1",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['base_book_1_publisher']"
+								}
+							},
+							{
+								"source": {
+									"name": "底本初版発行年1",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['base_book_1_1st_edition']"
+								}
+							},
+							{
+								"source": {
+									"name": "入力に使用した版1",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['base_book_1_edition_input']"
+								}
+							},
+							{
+								"source": {
+									"name": "校正に使用した版1",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['base_book_1_edition_proofing']"
+								}
+							},
+							{
+								"source": {
+									"name": "底本の親本名1",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['base_book_1_parent']"
+								}
+							},
+							{
+								"source": {
+									"name": "底本の親本出版社名1",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['base_book_1_parent_publisher']"
+								}
+							},
+							{
+								"source": {
+									"name": "底本の親本初版発行年1",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['base_book_1_parent_1st_edition']"
+								}
+							},
+							{
+								"source": {
+									"name": "底本名2",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['base_book_2']"
+								}
+							},
+							{
+								"source": {
+									"name": "底本出版社名2",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['base_book_2_publisher']"
+								}
+							},
+							{
+								"source": {
+									"name": "底本初版発行年2",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['base_book_2_1st_edition']"
+								}
+							},
+							{
+								"source": {
+									"name": "入力に使用した版2",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['base_book_2_edition_input']"
+								}
+							},
+							{
+								"source": {
+									"name": "校正に使用した版2",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['base_book_2_edition_proofing']"
+								}
+							},
+							{
+								"source": {
+									"name": "底本の親本名2",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['base_book_2_parent']"
+								}
+							},
+							{
+								"source": {
+									"name": "底本の親本出版社名2",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['base_book_2_parent_publisher']"
+								}
+							},
+							{
+								"source": {
+									"name": "底本の親本初版発行年2",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['base_book_2_parent_1st_edition']"
+								}
+							},
+							{
+								"source": {
+									"name": "入力者",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['input']"
+								}
+							},
+							{
+								"source": {
+									"name": "校正者",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['proofing']"
+								}
+							},
+							{
+								"source": {
+									"name": "テキストファイルURL",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['text_url']"
+								}
+							},
+							{
+								"source": {
+									"name": "テキストファイル最終更新日",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['text_last_modified']"
+								}
+							},
+							{
+								"source": {
+									"name": "テキストファイル符号化方式",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['text_encoding']"
+								}
+							},
+							{
+								"source": {
+									"name": "テキストファイル文字集合",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['text_charset']"
+								}
+							},
+							{
+								"source": {
+									"name": "テキストファイル修正回数",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['text_updated']"
+								}
+							},
+							{
+								"source": {
+									"name": "XHTML/HTMLファイルURL",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['html_url']"
+								}
+							},
+							{
+								"source": {
+									"name": "テキストファイル最終更新日",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['html_last_modified']"
+								}
+							},
+							{
+								"source": {
+									"name": "XHTML/HTMLファイル符号化方式",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['html_encoding']"
+								}
+							},
+							{
+								"source": {
+									"name": "XHTML/HTMLファイル文字集合",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['html_charset']"
+								}
+							},
+							{
+								"source": {
+									"name": "XHTML/HTMLファイル修正回数",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['html_updated']"
+								}
+							}
+						]
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "SourceDataset_35x",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "DestinationDataset_35x",
+						"type": "DatasetReference"
+					}
+				]
+			}
+		],
+		"annotations": []
+	}
+}
