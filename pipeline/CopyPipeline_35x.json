@@ -21,24 +21,15 @@
 				],
 				"typeProperties": {
 					"source": {
-						"type": "DelimitedTextSource",
-						"storeSettings": {
-							"type": "HttpReadSettings",
-							"requestMethod": "GET"
-						},
-						"formatSettings": {
-							"type": "DelimitedTextReadSettings",
-							"skipLineCount": "0",
-							"compressionProperties": {
-								"type": "ZipDeflateReadSettings"
-							}
-						}
+						"type": "BlobSource",
+						"recursive": true
 					},
 					"sink": {
 						"type": "CosmosDbSqlApiSink",
 						"writeBehavior": "insert"
 					},
 					"enableStaging": false,
+					"enableSkipIncompatibleRow": true,
 					"translator": {
 						"type": "TabularTranslator",
 						"mappings": [
@@ -533,7 +524,7 @@
 				},
 				"inputs": [
 					{
-						"referenceName": "SourceDataset_35x",
+						"referenceName": "SourceDataset_92p",
 						"type": "DatasetReference"
 					}
 				],
