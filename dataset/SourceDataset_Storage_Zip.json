@@ -1,5 +1,5 @@
 {
-	"name": "SourceDataset_92p",
+	"name": "SourceDataset_Storage_Zip",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "AzureStorage1",
@@ -234,7 +234,7 @@
 				"type": "TextFormat",
 				"columnDelimiter": ",",
 				"rowDelimiter": "",
-				"escapeChar": "\"",
+				"escapeChar": "",
 				"quoteChar": "\"",
 				"treatEmptyAsNull": true,
 				"skipLineCount": 0,
