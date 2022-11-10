@@ -234,17 +234,13 @@
 				"type": "TextFormat",
 				"columnDelimiter": ",",
 				"rowDelimiter": "",
-				"escapeChar": "\"",
+				"escapeChar": "",
 				"quoteChar": "\"",
 				"treatEmptyAsNull": true,
 				"skipLineCount": 0,
 				"firstRowAsHeader": true
 			},
-			"compression": {
-				"type": "ZipDeflate",
-				"level": "Fastest"
-			},
-			"fileName": "list_person_all_extended_utf8.zip",
+			"fileName": "test.csv",
 			"folderPath": "aozora"
 		}
 	},
